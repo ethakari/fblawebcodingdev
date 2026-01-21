@@ -6,11 +6,8 @@
 
     <title>School Lost & Found</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="firebase.js"></script>
-    <script type="module" src="item-management.js"></script>
-
+    
     <!-- Optional: custom font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +23,7 @@
     </style>
   </head>
 
-  <body class="bg-[#242424] text-white min-h-screen">
+  <body class="bg-[#121212] text-white min-h-screen">
     <nav
       class="md:w-fit md:flex md:top-0 md:left-0 bg-[#323232] p-4 fixed bottom-0 left-0 w-full"
     >
@@ -76,11 +73,16 @@
               class="w-full p-2 rounded-md bg-[#242424] mb-6"
             />
           </div>
-          <div>
-            dynamically added items
+          <div id="items-container" class="md:grid-cols-3 md:gap-4 grid grid-cols-1">
+            <!-- Items will be dynamically loaded here -->
           </div>
         </div>
       </div>
     </main>
+
+
+    <script type="module" src="./firebase.js"></script>
+    <script type="module" src="./item-management.js"></script>
+
   </body>
 </html>
