@@ -13,25 +13,16 @@ const categoryButtons = document.querySelectorAll(".category-btn");
 const clearBtn = document.getElementById("clear-search");
 
 clearBtn.addEventListener("click", () => {
+  // clear search bar text
   searchInput.value = "";
   applyFilters();
 });
-
-function activateButton(btn) {
-  btn.classList.add("bg-[#262626]", "text-white", "border-[#404040]");
-  btn.classList.remove("bg-[#1e1e1e]", "text-[#9EA3AE]", "border-transparent");
-}
-
-function deactivateButton(btn) {
-  btn.classList.remove("bg-[#262626]", "text-white", "border-[#404040]");
-  btn.classList.add("bg-[#1e1e1e]", "text-[#9EA3AE]", "border-transparent");
-}
 
 categoryButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const category = btn.dataset.category;
 
-    // Handle "All Categories"
+    // handle "All Categories"
     if (category === "all") {
       selectedCategories.clear();
       selectedCategories.add("all");
@@ -56,7 +47,7 @@ categoryButtons.forEach((btn) => {
         activateButton(btn);
       }
 
-      // Fallback: if none selected, revert to all
+      // default: if none selected, revert to all
       if (selectedCategories.size === 0) {
         selectedCategories.add("all");
         document
@@ -64,13 +55,29 @@ categoryButtons.forEach((btn) => {
           ?.classList.add("bg-[#262626]", "text-white", "border-[#404040]");
         document
           .querySelector('[data-category="all"]')
-          ?.classList.remove("bg-[#1e1e1e]", "text-[#9EA3AE]", "border-transparent");
+          ?.classList.remove(
+            "bg-[#1e1e1e]",
+            "text-[#9EA3AE]",
+            "border-transparent",
+          );
       }
     }
 
     applyFilters();
   });
 });
+
+function activateButton(btn) {
+  // helper functions for activating filter buttons
+  btn.classList.add("bg-[#262626]", "text-white", "border-[#404040]");
+  btn.classList.remove("bg-[#1e1e1e]", "text-[#9EA3AE]", "border-transparent");
+}
+
+function deactivateButton(btn) {
+  // helper functions for deactivating filter buttons
+  btn.classList.remove("bg-[#262626]", "text-white", "border-[#404040]");
+  btn.classList.add("bg-[#1e1e1e]", "text-[#9EA3AE]", "border-transparent");
+}
 
 async function loadItems() {
   const itemsRef = collection(db, "itemId");
@@ -91,19 +98,28 @@ async function loadItems() {
 }
 
 function renderItems(items) {
+  // generate HTML for each card
   container.innerHTML = "";
 
   items.forEach((item) => {
     const div = document.createElement("div");
-    div.className = "bg-white p-4 rounded-xl shadow";
+    div.className = "flex flex-col bg-[#2c2c2c] rounded-xl border border-[#5B5B5B]";
+
+    const imageSrc = item.imageUrl
+      ? item.imageUrl
+      : "/assets/image-unavailable.png";
 
     div.innerHTML = `
-    <p class="text-lg font-bold text-black">${item.name}</p>
-    <p class="text-gray-600">${item.description}</p>
-    <p class="text-sm text-gray-500">Found: ${item.dateFound.toDate().toLocaleDateString("en-US")}</p>
-    <p class="text-sm text-black">Tags: ${item.tags?.join(", ")}</p>
-    <p class="text-sm text-gray-500">Status: ${item.status}</p>
-    <p class="text-sm text-gray-500">Location Found: ${item.location}</p>
+    <img
+      src="${imageSrc}"
+      alt="Item Image"
+      class="w-full h-[250px] object-cover rounded-t-xl"
+    />
+    <div class="p-4"> 
+    <p class="text-lg font-[600] text-white">${item.name}</p>
+    <p class="text-sm text-[#D2D5DB]">Found: ${item.dateFound.toDate().toLocaleDateString("en-US")}</p>
+    <p class="text-sm text-[#D2D5DB]">Location Found: ${item.location}</p>
+    </div>
   `;
 
     container.appendChild(div);
@@ -115,21 +131,22 @@ function applyFilters() {
   const query = searchInput.value.toLowerCase();
 
   const filtered = allItems.filter((item) => {
-    // TEXT FILTER
+    // text filter
     const textMatch =
       item.name.toLowerCase().includes(query) ||
       item.description.toLowerCase().includes(query);
 
-    // CATEGORY FILTER
+    // tag filter
     const categoryMatch =
       selectedCategories.has("all") ||
       item.tags?.some((tag) => selectedCategories.has(tag));
 
-    return textMatch && categoryMatch;
+    return textMatch && categoryMatch; // return intersection
   });
 
+  // update item counter with length
   itemCount.textContent = `${filtered.length} items found • Help reunite lost belongings with their owners!!`;
-  renderItems(filtered);
+  renderItems(filtered); // render
 }
 
 loadItems();

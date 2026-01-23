@@ -75,7 +75,10 @@
           </p>
         </div>
 
-        <div class="flex flex-col max-w-5xl w-full p-0 md:pl-10 md:pr-10">
+        <form
+          id="report-form"
+          class="flex flex-col max-w-5xl w-full p-0 md:pl-10 md:pr-10"
+        >
           <div
             class="flex flex-col p-3 gap-4 rounded-t-xl bg-[#1e1e1e] border border-[#333333]"
           >
@@ -99,19 +102,57 @@
                 class="overflow-hidden text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl min-h-[100px]"
               ></textarea>
             </div>
-            <div class="flex flex-row gap-6 p-2">
+            <div class="flex flex-col md:flex-row gap-6 p-2">
               <div class="flex flex-col gap-2 w-full md:w-[50%]">
-                <label for="username" class="text-sm text-white">
-                  Category *
-                </label>
-                <input
-                  type="select"
-                  id="category"
-                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
-                />
+                <label for="tags" class="text-sm text-white"> Tags * </label>
+                <div
+                  id="tags"
+                  class="flex flex-col text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                >
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="electronics"
+                      class="tag-checkbox"
+                    />
+                    Electronics
+                  </label>
+                  <label>
+                    <input type="checkbox" value="bags" class="tag-checkbox" />
+                    Bags & Backpacks
+                  </label>
+                  <label>
+                    <input type="checkbox" value="books" class="tag-checkbox" />
+                    Books & Supplies
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="clothing"
+                      class="tag-checkbox"
+                    />
+                    Clothing
+                  </label>
+                  <label>
+                    <input type="checkbox" value="water" class="tag-checkbox" />
+                    Water Bottles
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="sports"
+                      class="tag-checkbox"
+                    />
+                    Sports Equipment
+                  </label>
+                  <label>
+                    <input type="checkbox" value="other" class="tag-checkbox" />
+                    Other
+                  </label>
+                </div>
               </div>
               <div class="flex flex-col gap-2 w-full md:w-[50%]">
-                <label for="email" class="text-sm text-white">
+                <label for="date" class="text-sm text-white">
                   Date Found *
                 </label>
                 <input
@@ -132,19 +173,28 @@
                 class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
               />
             </div>
-          </div>
-          <div
-            class="flex flex-col p-3 gap-4 border-t-0 bg-[#1e1e1e] border border-[#333333]"
-          >
+
             <div class="flex flex-col gap-2 p-2">
-              <label for="location" class="text-sm text-white">
+              <label for="upload" class="text-sm text-white">
                 Photo (Optional)
+                <div
+                  class="text-[#6D727F] text-sm justify-items-center border border-[#404040] mt-2 p-2 bg-transparent border-dashed rounded-xl min-h-[125px] cursor-pointer"
+                >
+                  <img
+                    src="assets/upload-icon.svg"
+                    alt="Report"
+                    class="w-21 h-21 pt-4 pb-4 justify-center align-center"
+                  />
+                  <div class="flex justify-center text-center pb-4">
+                    Click to upload
+                  </div>
+                </div>
               </label>
               <input
                 type="file"
-                id="location"
+                id="upload"
                 accept="image/jpeg, image/jpg, image/png, image/*"
-                class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-transparent border-dashed rounded-xl min-h-[125px]"
+                class="opacity-0 h-1"
               />
             </div>
           </div>
@@ -187,11 +237,12 @@
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </main>
 
     <script type="module" src="./firebase.js"></script>
     <script type="module" src="./item-management.js"></script>
+    <script type="module" src="./report-management.js"></script>
   </body>
 </html>
