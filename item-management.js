@@ -95,7 +95,7 @@ function renderItems(items) {
 
   items.forEach((item) => {
     const div = document.createElement("div");
-    div.className = "bg-white p-4 rounded shadow";
+    div.className = "bg-white p-4 rounded-xl shadow";
 
     div.innerHTML = `
     <p class="text-lg font-bold text-black">${item.name}</p>

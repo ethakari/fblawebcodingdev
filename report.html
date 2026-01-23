@@ -41,7 +41,7 @@
           <img
             src="assets/plus-icon.svg"
             alt="Report"
-            class="w-[33px] h-8 rounded-md hover:bg-[#404040] p-1"
+            class="w-[33px] h-8 rounded-xl hover:bg-[#404040] p-1"
           />
         </a>
         <a href="admin.html">
@@ -56,20 +56,137 @@
 
     <!-- Page Content -->
     <main class="md:w-auto md:mx-auto md:p-6 md:ml-16 m-0 p-10">
-      <div class="flex flex-col items-center rounded-md p-4">
+      <div class="flex flex-col items-center rounded-xl p-4">
         <div
-          class="flex flex-col max-w-5xl bg-transparent w-full rounded-md p-0 md:p-10"
+          class="flex flex-col max-w-5xl bg-transparent w-full rounded-xl p-0 md:pl-10 md:pr-10 md:pb-4 pt-10"
         >
-          <p class="flex text-4xl pt-12 pb-6 font-[600]">Report Found Item</p>
-          <p id="item-count" class="flex pb-4 text-[#9EA3AE]">
-            Help reunite lost items with their owners by submitting details below.
+          <a href="index.html" class="text-[#9CA3AF] pt-12 pb-2 flex flex-row">
+            <img
+              src="assets/return-home.svg"
+              alt="Report"
+              class="w-4 h-4 mt-1 mr-2"
+            />
+            Back to home
+          </a>
+          <p class="flex text-4xl pb-6 font-[600]">Report Found Item</p>
+          <p id="item-count" class="flex text-[#9EA3AE]">
+            Help reunite lost items with their owners by submitting details
+            below.
           </p>
         </div>
 
-        <div class="flex flex-col max-w-4xl bg-[#333333] w-full rounded-md p-0 ">
-            <div class="flex p-3">
-                dsfadf
+        <div class="flex flex-col max-w-5xl w-full p-0 md:pl-10 md:pr-10">
+          <div
+            class="flex flex-col p-3 gap-4 rounded-t-xl bg-[#1e1e1e] border border-[#333333]"
+          >
+            <div class="flex flex-col gap-2 p-2">
+              <label for="name" class="text-sm text-white"> Item Name * </label>
+              <input
+                type="text"
+                id="name"
+                placeholder="e.g., Blue Backpack, iPhone 15, Water Bottle"
+                class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+              />
             </div>
+            <div class="flex flex-col gap-2 p-2">
+              <label for="description" class="text-sm text-white">
+                Description *
+              </label>
+              <textarea
+                type="text"
+                id="description"
+                placeholder="Provide detailed description (color, brand, distinguishing features, etc.)"
+                class="overflow-hidden text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl min-h-[100px]"
+              ></textarea>
+            </div>
+            <div class="flex flex-row gap-6 p-2">
+              <div class="flex flex-col gap-2 w-full md:w-[50%]">
+                <label for="username" class="text-sm text-white">
+                  Category *
+                </label>
+                <input
+                  type="select"
+                  id="category"
+                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                />
+              </div>
+              <div class="flex flex-col gap-2 w-full md:w-[50%]">
+                <label for="email" class="text-sm text-white">
+                  Date Found *
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col gap-2 p-2">
+              <label for="location" class="text-sm text-white">
+                Location Found *
+              </label>
+              <input
+                type="text"
+                id="location"
+                placeholder="e.g., Library 2nd Floor, Cafeteria, Room 204"
+                class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col p-3 gap-4 border-t-0 bg-[#1e1e1e] border border-[#333333]"
+          >
+            <div class="flex flex-col gap-2 p-2">
+              <label for="location" class="text-sm text-white">
+                Photo (Optional)
+              </label>
+              <input
+                type="file"
+                id="location"
+                accept="image/jpeg, image/jpg, image/png, image/*"
+                class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-transparent border-dashed rounded-xl min-h-[125px]"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col p-3 gap-4 border-t-0 rounded-b-xl bg-[#1e1e1e] border border-[#333333]"
+          >
+            <div class="flex p-2 pb-0 text-md font-[500]">
+              Your Contact Information
+            </div>
+            <div class="flex flex-col md:flex-row gap-6 p-2">
+              <div class="flex flex-col gap-2 w-full md:w-[50%]">
+                <label for="username" class="text-sm text-white">
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="e.g., Blue Backpack, iPhone 15, Water Bottle"
+                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                />
+              </div>
+              <div class="flex flex-col gap-2 w-full md:w-[50%]">
+                <label for="email" class="text-sm text-white">
+                  Your Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="e.g., Blue Backpack, iPhone 15, Water Bottle"
+                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col gap-2 p-2">
+              <button
+                id="submit"
+                class="flex text-sm border rounded-xl bg-white justify-center text-black text-center p-2"
+              >
+                Submit Report
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
