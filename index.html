@@ -24,6 +24,91 @@
   </head>
 
   <body class="bg-[#121212] text-white min-h-screen">
+    <div
+      id="item-modal"
+      class="fixed inset-0 flex justify-center align-center hidden bg-black bg-opacity-80 z-50 p-4"
+    >
+      <div class="w-[75%] h-auto bg-transparent flex flex-col gap-4 pl-10 pr-10">
+        <div id="close-modal" class="cursor-pointer text-[#9CA3AF] pt-2 pb-2 flex flex-row">
+          <img
+            src="assets/return-home.svg"
+            alt="Report"
+            class="w-4 h-4 mt-1 mr-2"
+          />
+          Back
+        </div>
+        <div class="flex flex-row gap-6 bg-transparent">
+          <img
+            id="item-image"
+            class="w-[50%] flex border border-[#333333] rounded-xl"
+          />
+          <div class="flex flex-col gap-6 w-[50%]">
+            <div
+              class="flex flex-col gap-2 bg-[#1e1e1e] border border-[#333333] rounded-xl p-6"
+            >
+              <div id="item-title" class="text-3xl font-bold">title</div>
+              <div id="item-description" class="text-sm text-[#9CA3AF] pb-6">
+                description
+              </div>
+              <div class="flex flex-row gap-2">
+                <div
+                  class="flex w-[40px] h-[40px] justify-center align-center items-center bg-[#262626] rounded-xl"
+                >
+                  <img
+                    src="assets/tag-icon.svg"
+                    alt="tag"
+                    class="w-[24px] h-[24px] mt-[2px] ml-[2px]"
+                  />
+                </div>
+                <div class="flex flex-col">
+                  <div class="text-[10px] text-[#666666] mt-[2px]">
+                    Item Tags
+                  </div>
+                  <div id="item-tags" class="text-[12px] text-white">tags</div>
+                </div>
+              </div>
+              <div class="flex flex-row gap-2">
+                <div
+                  class="flex w-[40px] h-[40px] justify-center align-center items-center bg-[#262626] rounded-xl"
+                >
+                  <img
+                    src="assets/location-icon.svg"
+                    alt="tag"
+                    class="w-[24px] h-[24px] mt-[2px] ml-[2px]"
+                  />
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div class="text-[10px] text-[#666666]">Location Found</div>
+                  <div id="item-location" class="text-[12px] text-white">
+                    location
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-row gap-2">
+                <div
+                  class="flex w-[40px] h-[40px] justify-center align-center items-center bg-[#262626] rounded-xl"
+                >
+                  <img
+                    src="assets/calender-icon.svg"
+                    alt="tag"
+                    class="w-[24px] h-[24px] mt-[2px] ml-[2px]"
+                  />
+                </div>
+                <div class="flex flex-col justify-center">
+                  <div class="text-[10px] text-[#666666]">Date Found</div>
+                  <div id="item-date" class="text-[12px] text-white">date</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-2 bg-[#1e1e1e] border border-[#333333] rounded-xl p-6"
+            >
+              hello world
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <nav
       class="md:w-fit md:flex md:top-0 md:left-0 bg-[#333333] p-4 fixed bottom-0 left-0 w-full"
     >
@@ -57,15 +142,13 @@
     <!-- Page Content -->
     <main class="md:w-auto md:mx-auto md:p-6 md:ml-16 m-0 p-10">
       <div class="flex flex-col items-center p-4">
-        <div
-          class="flex flex-col max-w-7xl bg-[#121212] w-full p-0 md:p-10"
-        >
+        <div class="flex flex-col max-w-7xl bg-[#121212] w-full p-0 md:p-10">
           <p class="flex text-4xl pt-12 pb-6 font-[600]">School Lost & Found</p>
           <p id="item-count" class="flex pb-4 text-[#9EA3AE]">
-            0 items found • Help reunite lost belongings with their owners!!
+            0 items found • Help reunite lost belongings with their owners!
           </p>
-          <div class="md:flex-row flex flex-col gap-4">
-            <div class="flex flex-row gap-4 w-full">
+          <div class="md:flex-row flex flex-col gap-2">
+            <div class="flex flex-row gap-2 w-full">
               <input
                 type="text"
                 id="search"

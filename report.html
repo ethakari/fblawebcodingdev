@@ -7,7 +7,7 @@
     <title>School Lost & Found</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="stylesheet" href="global.css" />
     <!-- Optional: custom font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -58,7 +58,7 @@
     <main class="md:w-auto md:mx-auto md:p-6 md:ml-16 m-0 p-10">
       <div class="flex flex-col items-center rounded-xl p-4">
         <div
-          class="flex flex-col max-w-5xl bg-transparent w-full rounded-xl p-0 md:pl-10 md:pr-10 md:pb-4 pt-10"
+          class="flex flex-col max-w-5xl bg-transparent w-full rounded-xl p-0 pb-2 md:pl-10 md:pr-10 md:pb-4 pt-6"
         >
           <a href="index.html" class="text-[#9CA3AF] pt-12 pb-2 flex flex-row">
             <img
@@ -88,7 +88,7 @@
                 type="text"
                 id="name"
                 placeholder="e.g., Blue Backpack, iPhone 15, Water Bottle"
-                class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                class="placeholder-[#6D727F] text-white text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
               />
             </div>
             <div class="flex flex-col gap-2 p-2">
@@ -99,7 +99,7 @@
                 type="text"
                 id="description"
                 placeholder="Provide detailed description (color, brand, distinguishing features, etc.)"
-                class="overflow-hidden text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl min-h-[100px]"
+                class="overflow-hidden placeholder-[#6D727F] text-white text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl min-h-[100px]"
               ></textarea>
             </div>
             <div class="flex flex-col md:flex-row gap-6 p-2">
@@ -109,45 +109,89 @@
                   id="tags"
                   class="flex flex-col text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
                 >
-                  <label>
+                  <label class="cursor-pointer">
                     <input
                       type="checkbox"
                       value="electronics"
-                      class="tag-checkbox"
+                      class="tag-checkbox peer hidden"
                     />
-                    Electronics
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Electronics
+                    </div>
                   </label>
-                  <label>
-                    <input type="checkbox" value="bags" class="tag-checkbox" />
-                    Bags & Backpacks
+                  <label class="cursor-pointer mt-1">
+                    <input
+                      type="checkbox"
+                      value="bags"
+                      class="tag-checkbox peer hidden"
+                    />
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Bags & Backpacks
+                    </div>
                   </label>
-                  <label>
-                    <input type="checkbox" value="books" class="tag-checkbox" />
-                    Books & Supplies
+                  <label class="cursor-pointer mt-1">
+                    <input
+                      type="checkbox"
+                      value="books"
+                      class="tag-checkbox peer hidden"
+                    />
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Books & Supplies
+                    </div>
                   </label>
-                  <label>
+                  <label class="cursor-pointer mt-1">
                     <input
                       type="checkbox"
                       value="clothing"
-                      class="tag-checkbox"
+                      class="tag-checkbox peer hidden"
                     />
-                    Clothing
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Clothing & Accessories
+                    </div>
                   </label>
-                  <label>
-                    <input type="checkbox" value="water" class="tag-checkbox" />
-                    Water Bottles
+                  <label class="cursor-pointer mt-1">
+                    <input
+                      type="checkbox"
+                      value="water"
+                      class="tag-checkbox peer hidden"
+                    />
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Water Bottles
+                    </div>
                   </label>
-                  <label>
+                  <label class="cursor-pointer mt-1">
                     <input
                       type="checkbox"
                       value="sports"
-                      class="tag-checkbox"
+                      class="tag-checkbox peer hidden"
                     />
-                    Sports Equipment
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Sport Equipment
+                    </div>
                   </label>
-                  <label>
-                    <input type="checkbox" value="other" class="tag-checkbox" />
-                    Other
+                  <label class="cursor-pointer mt-1">
+                    <input
+                      type="checkbox"
+                      value="other"
+                      class="tag-checkbox peer hidden"
+                    />
+                    <div
+                      class="px-3 py-1 rounded-full border border-[#404040] text-[#6D727F] transition peer-checked:text-white peer-checked:bg-[#262626] peer-checked:border-[#555555]"
+                    >
+                      Other
+                    </div>
                   </label>
                 </div>
               </div>
@@ -158,7 +202,7 @@
                 <input
                   type="date"
                   id="date"
-                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                  class="scheme-dark text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
                 />
               </div>
             </div>
@@ -170,7 +214,7 @@
                 type="text"
                 id="location"
                 placeholder="e.g., Library 2nd Floor, Cafeteria, Room 204"
-                class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                class="placeholder-[#6D727F] text-white text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
               />
             </div>
 
@@ -213,7 +257,7 @@
                   type="text"
                   id="username"
                   placeholder="e.g., Blue Backpack, iPhone 15, Water Bottle"
-                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                  class="placeholder-[#6D727F] text-white text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
                 />
               </div>
               <div class="flex flex-col gap-2 w-full md:w-[50%]">
@@ -224,7 +268,7 @@
                   type="email"
                   id="email"
                   placeholder="e.g., Blue Backpack, iPhone 15, Water Bottle"
-                  class="text-[#6D727F] text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
+                  class="placeholder-[#6D727F] text-white text-sm border border-[#404040] p-2 bg-[#121212] rounded-xl"
                 />
               </div>
             </div>

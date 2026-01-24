@@ -11,6 +11,7 @@ const itemCount = document.getElementById("item-count");
 const selectedCategories = new Set(["all"]);
 const categoryButtons = document.querySelectorAll(".category-btn");
 const clearBtn = document.getElementById("clear-search");
+const modal = document.getElementById("item-modal");
 
 clearBtn.addEventListener("click", () => {
   // clear search bar text
@@ -94,7 +95,7 @@ async function loadItems() {
 
   renderItems(allItems);
   itemCount.textContent = `${allItems.length} items found • Help reunite lost belongings with their
-  owners!!`;
+  owners!`;
 }
 
 function renderItems(items) {
@@ -103,7 +104,10 @@ function renderItems(items) {
 
   items.forEach((item) => {
     const div = document.createElement("div");
-    div.className = "flex flex-col bg-[#2c2c2c] rounded-xl border border-[#5B5B5B]";
+    div.className =
+      "cursor-pointer item-tile flex flex-col bg-[#2c2c2c] rounded-xl border border-[#5B5B5B]";
+
+    div.dataset.itemId = item.id;
 
     const imageSrc = item.imageUrl
       ? item.imageUrl
@@ -115,8 +119,8 @@ function renderItems(items) {
       alt="Item Image"
       class="w-full h-[250px] object-cover rounded-t-xl"
     />
-    <div class="p-4"> 
-    <p class="text-lg font-[600] text-white">${item.name}</p>
+    <div class="p-3 border-t border-[#5B5B5B]"> 
+    <p class="text-lg font-[500] text-white">${item.name}</p>
     <p class="text-sm text-[#D2D5DB]">Found: ${item.dateFound.toDate().toLocaleDateString("en-US")}</p>
     <p class="text-sm text-[#D2D5DB]">Location Found: ${item.location}</p>
     </div>
@@ -148,5 +152,34 @@ function applyFilters() {
   itemCount.textContent = `${filtered.length} items found • Help reunite lost belongings with their owners!!`;
   renderItems(filtered); // render
 }
-
 loadItems();
+
+container.addEventListener("click", (e) => {
+  const tile = e.target.closest(".item-tile");
+  if (!tile) return;
+
+  const itemId = tile.dataset.itemId;
+  openModal(itemId);
+});
+
+function openModal(itemId) {
+  const item = allItems.find((i) => i.id === itemId);
+  if (!item) return;
+
+  // populate modal
+  document.getElementById("item-title").textContent = item.name;
+  document.getElementById("item-image").src =
+    item.imageUrl || "/assets/image-unavailable.png";
+  document.getElementById("item-description").textContent =
+    item.description || "No description provided";
+  document.getElementById("item-location").textContent = item.location;
+  document.getElementById("item-date").textContent = item.dateFound
+    .toDate()
+    .toLocaleDateString("en-US");
+
+  modal.classList.remove("hidden");
+}
+
+document.getElementById("close-modal").addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
