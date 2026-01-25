@@ -4,6 +4,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "/firebase.js";
 
+
 let allItems = [];
 const container = document.getElementById("items-container");
 const searchInput = document.getElementById("search");
@@ -180,6 +181,8 @@ function openModal(itemId) {
   modal.classList.remove("hidden");
 }
 
-document.getElementById("close-modal").addEventListener("click", () => {
-  modal.classList.add("hidden");
+document.querySelectorAll(".close-modal").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
 });

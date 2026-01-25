@@ -4,16 +4,34 @@ import {
   Timestamp,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "/firebase.js";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+const storage = getStorage();
 
 const form = document.getElementById("report-form");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const tags = Array.from(
-  document.querySelectorAll(".tag-checkbox:checked")
-).map(cb => cb.value);
+  const fileInput = document.getElementById("upload");
+  let imageUrl = null;
 
+  if (fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+
+    const storageRef = ref(storage, `itemId/${Date.now()}_${file.name}`);
+
+    await uploadBytes(storageRef, file);
+    imageUrl = await getDownloadURL(storageRef);
+  }
+
+  const tags = Array.from(
+    document.querySelectorAll(".tag-checkbox:checked"),
+  ).map((cb) => cb.value);
 
   const item = {
     name: document.getElementById("name").value.trim(),
@@ -28,7 +46,7 @@ form.addEventListener("submit", async (e) => {
     email: document.getElementById("email").value.trim(),
 
     status: "pending",
-    imageUrl: null, // placeholder for later
+    imageUrl: imageUrl,
   };
 
   // basic validation

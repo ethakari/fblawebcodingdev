@@ -2,6 +2,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import {
+  getStorage,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,5 +25,5 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 // export const analytics = getAnalytics(app);
 export const db = getFirestore(app);
-
+export const storage = getStorage(app);
 console.log("firebase installed");
