@@ -5,6 +5,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase
 import {
   getStorage,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,4 +27,6 @@ export const app = initializeApp(firebaseConfig);
 // export const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const auth = getAuth(app);
+export { signInWithEmailAndPassword };
 console.log("firebase installed");

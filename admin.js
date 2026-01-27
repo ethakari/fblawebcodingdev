@@ -4,6 +4,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "/firebase.js";
 import { formatForDisplay } from "./modify-text.js";
+import { auth, signInWithEmailAndPassword } from "/firebase.js";
+
 
 let allItems = [];
 let pendingItemCount = 0;
@@ -12,7 +14,6 @@ const container = document.getElementById("admin-items");
 const pendingCountElement = document.getElementById("pending-items");
 const pendingClaimElement = document.getElementById("pending-claims");
 const totalItemCountElement = document.getElementById("total-items");
-
 
 
 async function loadItems() {
