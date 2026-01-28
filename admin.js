@@ -1,4 +1,6 @@
 import {
+  query, 
+  orderBy,
   collection,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -67,7 +69,8 @@ logoutBtn?.addEventListener("click", () => {
 
 async function loadItems() {
   const itemsRef = collection(db, "itemId");
-  const snapshot = await getDocs(itemsRef);
+  const q = query(itemsRef, orderBy("dateFound", "desc"));
+  const snapshot = await getDocs(q);
 
   allItems = [];
   itemMap = {};
@@ -178,6 +181,7 @@ function renderItems(items) {
             <div class="flex w-[50%] text-[12px] text-[#9CA3AF]">Location: ${formatForDisplay(item.location)}</div>
             <div class="flex w-[50%] text-[12px] text-[#9CA3AF]">Date Found: ${item.dateFound.toDate().toLocaleDateString("en-US")}</div>
         </div>
+        <div class="text-sm text-[#9CA3AF]">Status: ${item.status}</div>
     </div>
   `;
 

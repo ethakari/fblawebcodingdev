@@ -1,10 +1,11 @@
 import {
+  query,
+  orderBy,
   collection,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "/firebase.js";
 import { formatForDisplay } from "./modify-text.js";
-
 
 let allItems = [];
 const container = document.getElementById("items-container");
@@ -84,6 +85,7 @@ function deactivateButton(btn) {
 
 async function loadItems() {
   const itemsRef = collection(db, "itemId");
+  const q = query(itemsRef, orderBy("dateFound", "desc"));
   const snapshot = await getDocs(itemsRef);
 
   allItems = [];
@@ -168,13 +170,25 @@ function openModal(itemId) {
   const item = allItems.find((i) => i.id === itemId);
   if (!item) return;
 
+  const tagsEl = document.getElementById("item-tags");
+
+  if (Array.isArray(item.tags) && item.tags.length > 0) {
+    tagsEl.textContent = item.tags.join(", ");
+  } else {
+    tagsEl.textContent = "None";
+  }
+
   // populate modal
-  document.getElementById("item-title").textContent = formatForDisplay(item.name);
+  document.getElementById("item-title").textContent = formatForDisplay(
+    item.name,
+  );
   document.getElementById("item-image").src =
     item.imageUrl || "/assets/image-unavailable.png";
   document.getElementById("item-description").textContent =
     formatForDisplay(item.description) || "No description provided";
-  document.getElementById("item-location").textContent = formatForDisplay(item.location);
+  document.getElementById("item-location").textContent = formatForDisplay(
+    item.location,
+  );
   document.getElementById("item-date").textContent = item.dateFound
     .toDate()
     .toLocaleDateString("en-US");
